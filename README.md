@@ -1,5 +1,7 @@
 # Home Drive
 
+![Home Drive](art/Home_Drive_TV_Banner.png)
+
 Browse and play the router's USB drive (SMB share) on an Android TV box.
 
 - Folders and files with sizes; **OK** opens or plays, **Back** goes up a folder.
