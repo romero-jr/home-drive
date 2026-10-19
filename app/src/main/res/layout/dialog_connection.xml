@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingTop="8dp"
+    android:paddingRight="24dp">
+
+    <EditText android:id="@+id/server" style="@style/SettingsField" android:hint="Server (e.g. 192.168.0.1)" android:inputType="textUri" android:imeOptions="actionNext" />
+    <EditText android:id="@+id/share" style="@style/SettingsField" android:hint="Share (e.g. G)" android:imeOptions="actionNext" />
+    <EditText android:id="@+id/username" style="@style/SettingsField" android:hint="Username (empty for guest)" android:imeOptions="actionNext" />
+    <EditText android:id="@+id/password" style="@style/SettingsField" android:hint="Password" android:inputType="textPassword" android:imeOptions="actionGo" />
+</LinearLayout>

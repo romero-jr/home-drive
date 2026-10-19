@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Optional connection defaults for your own build, kept out of git:
+// create defaults.properties with server=, share=, username= (see README).
+def defaults = new Properties()
+def defaultsFile = rootProject.file('defaults.properties')
+if (defaultsFile.exists()) defaultsFile.withInputStream { defaults.load(it) }
+def quoted = { String key -> '"' + (defaults.getProperty(key, '')).replace('"', '\\"') + '"' }
+
+android {
+    namespace 'com.homedrive.app'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.homedrive.app'
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+        buildConfigField 'String', 'DEFAULT_SERVER', quoted('server')
+        buildConfigField 'String', 'DEFAULT_SHARE', quoted('share')
+        buildConfigField 'String', 'DEFAULT_USERNAME', quoted('username')
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            // Signed with the debug key so the APK can be sideloaded without a keystore.
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packaging {
+        resources {
+            excludes += ['META-INF/versions/9/OSGI-INF/MANIFEST.MF', 'META-INF/DEPENDENCIES',
+                         'META-INF/LICENSE*', 'META-INF/NOTICE*', 'META-INF/INDEX.LIST']
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.8.2'
+    implementation 'androidx.media3:media3-exoplayer:1.4.1'
+    implementation 'androidx.media3:media3-ui:1.4.1'
+    implementation 'com.hierynomus:smbj:0.13.0'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+}
